@@ -155,7 +155,6 @@
     <ClInclude Include="HttpServer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="game.js" />
     <None Include="index.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

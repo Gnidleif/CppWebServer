@@ -71,7 +71,7 @@ string CWS::HttpServer::read_file(string file_name)
     while (f.good()) 
     {
       getline(f, line);
-      content += line + "\n\r";
+      content += line + "\r\n";
     }
     f.close();
   }
