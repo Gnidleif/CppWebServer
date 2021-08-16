@@ -14,52 +14,46 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
     <Filter Include="Header Files\Networking">
-      <UniqueIdentifier>{3567c22b-bf9d-4734-abd0-a0d50df59436}</UniqueIdentifier>
+      <UniqueIdentifier>{cc295033-dfa6-420f-8b46-f54b46e3acee}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Networking\Sockets">
-      <UniqueIdentifier>{a2c0038d-45c5-4e75-b1e4-c62bb7183f2f}</UniqueIdentifier>
+      <UniqueIdentifier>{09dcf86e-de96-4841-81fb-b5e26e0cae1b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Networking">
-      <UniqueIdentifier>{881660bf-4da2-4ef6-9429-bc4502e81556}</UniqueIdentifier>
+      <UniqueIdentifier>{dd6bf7d8-2761-4563-8fa0-b71f0285cc33}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Networking\Sockets">
-      <UniqueIdentifier>{f33dde9a-0ce4-4bea-9286-fedf023a6d2f}</UniqueIdentifier>
+      <UniqueIdentifier>{2a0532e0-f14c-4f99-9671-2fe963ed1d76}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BindingSocket.cpp">
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleSocket.cpp">
       <Filter>Source Files\Networking\Sockets</Filter>
     </ClCompile>
-    <ClCompile Include="ConnectingSocket.cpp">
+    <ClCompile Include="BindingSocket.cpp">
       <Filter>Source Files\Networking\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="ListeningSocket.cpp">
       <Filter>Source Files\Networking\Sockets</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleSocket.cpp">
-      <Filter>Source Files\Networking\Sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BindingSocket.hpp">
+    <ClInclude Include="SimpleSocket.hpp">
       <Filter>Header Files\Networking\Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="ConnectingSocket.hpp">
+    <ClInclude Include="BindingSocket.hpp">
       <Filter>Header Files\Networking\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="ListeningSocket.hpp">
       <Filter>Header Files\Networking\Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleSocket.hpp">
+    <ClInclude Include="cwslibc_sockets.hpp">
       <Filter>Header Files\Networking\Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="cwslibc-sockets.hpp">
-      <Filter>Header Files\Networking\Sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="cwslibc-networking.hpp">
+    <ClInclude Include="cwslibc_networking.hpp">
       <Filter>Header Files\Networking</Filter>
     </ClInclude>
     <ClInclude Include="cwslibc.hpp">

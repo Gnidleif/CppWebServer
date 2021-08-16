@@ -1,9 +1,7 @@
 #pragma once
-#ifndef SimpleSocket_hpp
-#define SimpleSocket_hpp
 
-#pragma comment(lib, "Ws2_32.lib")
-#include <WinSock2.h>
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
 
 namespace CWS
 {
@@ -11,25 +9,16 @@ namespace CWS
   {
   public:
     // Constructor
-    SimpleSocket(int domain, int service, int protocol, int port, u_long itf);
-    // Virtual function to connect to a network
-    virtual int connect_to_network(int sock, struct sockaddr_in address) = 0;
-    // Function to test sockets and connections
-    void test_connection(int item_to_test);
+    SimpleSocket(const char* ip_address, int port, int domain, int service, int protocol);
+    void test_socket(int socket);
+    virtual int connect_to_network() = 0;
+    virtual int run() = 0;
 
-    // Getter functions
     struct sockaddr_in get_address();
-    int get_sock();
-    int get_connection();
-
-    // Setter functions
-    void set_connection(int conn);
+    int get_socket();
 
   private:
-    struct sockaddr_in address;
-    int sock;
-    int connection;
+    struct sockaddr_in _address;
+    int _socket;
   };
 }
-
-#endif

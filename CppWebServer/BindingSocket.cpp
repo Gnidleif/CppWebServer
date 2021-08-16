@@ -1,17 +1,16 @@
 #pragma once
 #include "BindingSocket.hpp"
 
-// Constructor
-CWS::BindingSocket::BindingSocket(int domain, int service, int protocol, int port, u_long itf)
-  : SimpleSocket(domain, service, protocol, port, itf)
+CWS::BindingSocket::BindingSocket(const char* ip_address, int port, int domain, int service, int protocol)
+  : SimpleSocket(ip_address, port, domain, service, protocol)
 {
-  // Establish network connection
-  set_connection(connect_to_network(get_sock(), get_address()));
-  test_connection(get_connection());
+  this->_connection = connect_to_network();
+  test_socket(this->_connection);
 }
 
-// Implementation of connect_to_network virtual function
-int CWS::BindingSocket::connect_to_network(int sock, struct sockaddr_in address)
+int CWS::BindingSocket::connect_to_network()
 {
+  int sock = this->get_socket();
+  struct sockaddr_in address = this->get_address();
   return bind(sock, (struct sockaddr*)&address, sizeof(address));
 }

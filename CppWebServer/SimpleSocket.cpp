@@ -1,47 +1,46 @@
 #pragma once
 #include "SimpleSocket.hpp"
 
-// Default constructor
-CWS::SimpleSocket::SimpleSocket(int domain, int service, int protocol, int port, u_long itf)
+CWS::SimpleSocket::SimpleSocket(const char* ip_address, int port, int domain, int service, int protocol)
 {
-  // Define address structure
-  this->address.sin_family = domain;
-  this->address.sin_port = htons(port);
-  this->address.sin_addr.S_un.S_addr = htonl(itf);
-
-  // Establish socket
-  this->sock = socket(domain, service, protocol);
-  test_connection(this->sock);
-};
-
-// Test connection virtual function
-void CWS::SimpleSocket::test_connection(int item_to_test)
-{
-  if (item_to_test < 0)
+  if ((this->_socket = socket(domain, service, protocol)) == INVALID_SOCKET)
   {
-    perror("Failed to connect...");
+    WSAData wsData;
+    WORD ver = MAKEWORD(2, 2);
+    int wsOk;
+    if ((wsOk = WSAStartup(ver, &wsData)) != 0)
+    {
+      perror("Failed to initialize WinSock...");
+      exit(EXIT_FAILURE);
+    }
+
+    if ((this->_socket = socket(domain, service, protocol)) == INVALID_SOCKET)
+    {
+      perror("Failed to initialize socket... ");
+      exit(EXIT_FAILURE);
+    }
+  }
+
+  this->_address.sin_family = domain;
+  this->_address.sin_port = htons(port);
+  inet_pton(domain, ip_address, &this->_address.sin_addr);
+}
+
+void CWS::SimpleSocket::test_socket(int socket)
+{
+  if (socket == SOCKET_ERROR) 
+  {
+    perror("Socket error... ");
     exit(EXIT_FAILURE);
   }
 }
 
-// Getter functions
-
-struct sockaddr_in CWS::SimpleSocket::get_address()
+struct sockaddr_in CWS::SimpleSocket::get_address() 
 {
-  return this->address;
+  return this->_address;
 }
 
-int CWS::SimpleSocket::get_sock()
+int CWS::SimpleSocket::get_socket()
 {
-  return this->sock;
-}
-
-int CWS::SimpleSocket::get_connection()
-{
-  return this->connection;
-}
-
-void CWS::SimpleSocket::set_connection(int conn)
-{
-  this->connection = conn;
+  return this->_socket;
 }

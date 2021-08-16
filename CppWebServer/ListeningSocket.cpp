@@ -1,25 +1,63 @@
 #pragma once
 #include "ListeningSocket.hpp"
 
-CWS::ListeningSocket::ListeningSocket(int domain, int service, int protocol, int port, u_long itf, int backlog)
-  : BindingSocket(domain, service, protocol, port, itf)
+CWS::ListeningSocket::ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog)
+  : BindingSocket(ip_address, port, domain, service, protocol)
 {
-  this->backlog = backlog;
-  start_listening();
-  test_connection(this->listening);
+  this->_backlog = backlog;
+  this->_listening = connect_to_network();
+  test_socket(this->_listening);
+
+  FD_ZERO(&this->_master);
+  FD_SET(this->get_socket(), &this->_master);
 }
 
-void CWS::ListeningSocket::start_listening() 
+int CWS::ListeningSocket::connect_to_network()
 {
-  this->listening = listen(get_sock(), this->backlog);
+  return listen(this->get_socket(), this->_backlog);
 }
 
-int CWS::ListeningSocket::get_listening()
+int CWS::ListeningSocket::run()
 {
-  return this->listening;
-}
+  bool running = true;
+  while (running)
+  {
+    fd_set copy = this->_master;
+    int socket_count = select(0, &copy, nullptr, nullptr, nullptr);
 
-int CWS::ListeningSocket::get_backlog()
-{
-  return this->backlog;
+    for (int i = 0; i < socket_count; i++) 
+    {
+      SOCKET socket = copy.fd_array[i];
+      if (socket == this->get_socket())
+      {
+        SOCKET client = accept(this->get_socket(), nullptr, nullptr);
+        FD_SET(client, &this->_master);
+      }
+      else
+      {
+        int bytesIn;
+        char buf[4096];
+        ZeroMemory(buf, 4096);
+
+        if ((bytesIn = recv(socket, buf, 4096, 0)) <= 0) 
+        {
+          closesocket(socket);
+          FD_CLR(socket, &this->_master);
+        }
+      }
+    }
+  }
+
+  FD_CLR(this->get_socket(), &this->_master);
+  closesocket(this->get_socket());
+
+  while (this->_master.fd_count > 0) 
+  {
+    SOCKET socket = this->_master.fd_array[0];
+    FD_CLR(socket, &this->_master);
+    closesocket(socket);
+  }
+
+  WSACleanup();
+  return 0;
 }

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef ListeningSocket_hpp
-#define ListeningSocket_hpp
 
 #include "BindingSocket.hpp"
 
@@ -9,19 +7,15 @@ namespace CWS
   class ListeningSocket : public BindingSocket
   {
   public:
-    // Constructor
-    ListeningSocket(int domain, int service, int protocol, int port, u_long itf, int backlog);
-    // Listening function
-    void start_listening();
-
-    // Getter functions
-    int get_listening();
-    int get_backlog();
+    ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog);
+    int connect_to_network();
+    int run();
+    void on_client_connect(int client_socket);
+    void on_client_disconnect(int client_socket);
 
   private:
-    int listening;
-    int backlog;
+    int _listening;
+    int _backlog;
+    fd_set _master;
   };
 }
-
-#endif

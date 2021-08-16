@@ -140,17 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BindingSocket.cpp" />
-    <ClCompile Include="ConnectingSocket.cpp" />
     <ClCompile Include="ListeningSocket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimpleSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingSocket.hpp" />
-    <ClInclude Include="ConnectingSocket.hpp" />
-    <ClInclude Include="cwslibc-networking.hpp" />
-    <ClInclude Include="cwslibc-sockets.hpp" />
     <ClInclude Include="cwslibc.hpp" />
+    <ClInclude Include="cwslibc_networking.hpp" />
+    <ClInclude Include="cwslibc_sockets.hpp" />
     <ClInclude Include="ListeningSocket.hpp" />
     <ClInclude Include="SimpleSocket.hpp" />
   </ItemGroup>
