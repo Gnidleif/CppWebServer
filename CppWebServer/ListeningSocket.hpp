@@ -14,7 +14,6 @@ namespace CWS
     int run();
 
   private:
-    int _listening;
     fd_set _master;
   };
 }

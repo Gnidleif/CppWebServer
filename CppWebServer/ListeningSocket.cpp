@@ -4,8 +4,7 @@
 CWS::ListeningSocket::ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog)
   : BindingSocket(ip_address, port, domain, service, protocol)
 {
-  this->_listening = start_listening(this->get_socket(), backlog);
-  test_socket(this->_listening);
+  test_socket(start_listening(this->get_socket(), backlog));
 
   FD_ZERO(&this->_master);
   FD_SET(this->get_socket(), &this->_master);
