@@ -25,7 +25,7 @@ int CWS::ListeningSocket::run()
     fd_set copy = this->_master;
     int socket_count = select(0, &copy, nullptr, nullptr, nullptr);
 
-    for (int i = 0; i < socket_count; i++) 
+    for (int i = 0; i < socket_count; i++)
     {
       SOCKET socket = copy.fd_array[i];
       if (socket == this->get_socket())
@@ -51,7 +51,7 @@ int CWS::ListeningSocket::run()
   FD_CLR(this->get_socket(), &this->_master);
   closesocket(this->get_socket());
 
-  while (this->_master.fd_count > 0) 
+  while (this->_master.fd_count > 0)
   {
     SOCKET socket = this->_master.fd_array[0];
     FD_CLR(socket, &this->_master);
@@ -59,5 +59,6 @@ int CWS::ListeningSocket::run()
   }
 
   WSACleanup();
+
   return 0;
 }

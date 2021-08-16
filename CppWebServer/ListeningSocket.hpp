@@ -7,11 +7,12 @@ namespace CWS
   class ListeningSocket : public BindingSocket
   {
   public:
+    // Constructor
     ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog);
+    // Override of connect_to_network first implemented in BindingSocket
     int connect_to_network();
+    // Implementation of run first declared in SimpleSocket
     int run();
-    void on_client_connect(int client_socket);
-    void on_client_disconnect(int client_socket);
 
   private:
     int _listening;
