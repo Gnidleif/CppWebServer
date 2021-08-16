@@ -13,9 +13,7 @@ namespace CWS
     // Check socket state and exit on fail
     void test_socket(int socket);
     // Virtual declaration of connect_to_network
-    virtual int connect_to_network() = 0;
-    // Virtual declaration of run
-    virtual int run() = 0;
+    virtual int connect_to_network(int socket, struct sockaddr_in address) = 0;
 
     // Getter functions
     struct sockaddr_in get_address();

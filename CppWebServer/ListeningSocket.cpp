@@ -4,17 +4,16 @@
 CWS::ListeningSocket::ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog)
   : BindingSocket(ip_address, port, domain, service, protocol)
 {
-  this->_backlog = backlog;
-  this->_listening = connect_to_network();
+  this->_listening = start_listening(this->get_socket(), backlog);
   test_socket(this->_listening);
 
   FD_ZERO(&this->_master);
   FD_SET(this->get_socket(), &this->_master);
 }
 
-int CWS::ListeningSocket::connect_to_network()
+int CWS::ListeningSocket::start_listening(int socket, int backlog)
 {
-  return listen(this->get_socket(), this->_backlog);
+  return listen(socket, backlog);
 }
 
 int CWS::ListeningSocket::run()
