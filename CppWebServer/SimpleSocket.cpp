@@ -24,6 +24,11 @@ CWS::SimpleSocket::SimpleSocket(const char* ip_address, const char* port, int fa
   assert(getaddrinfo(ip_address, port, &hints, &this->_address) == 0);
 }
 
+CWS::SimpleSocket::~SimpleSocket()
+{
+  freeaddrinfo(this->_address);
+}
+
 void CWS::SimpleSocket::test_socket(int socket)
 {
   assert(socket != SOCKET_ERROR);

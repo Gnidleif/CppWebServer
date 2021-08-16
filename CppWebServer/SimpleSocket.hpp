@@ -12,6 +12,7 @@ namespace CWS
   public:
     // Constructor
     SimpleSocket(const char* ip_address, const char* port, int family, int socktype, int protocol, int flags);
+    ~SimpleSocket();
     // Check socket state and exit on fail
     void test_socket(int socket);
     // Virtual declaration of connect_to_network

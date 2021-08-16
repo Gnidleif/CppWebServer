@@ -7,7 +7,7 @@ CWS::HttpServer::HttpServer(const char* ip_address, const char* port)
   : ListeningSocket(ip_address, port, AF_INET, SOCK_STREAM, IPPROTO_TCP, AI_PASSIVE, SOMAXCONN)
 {
   FD_ZERO(&this->_master);
-  FD_SET(this->get_socket(), &this->_master);
+  FD_SET(get_socket(), &this->_master);
 }
 
 int CWS::HttpServer::run()
@@ -23,10 +23,10 @@ int CWS::HttpServer::run()
     {
       SOCKET socket = copy.fd_array[i];
 
-      if (socket == this->get_socket())
+      if (socket == get_socket())
       {
         // Accept new connection
-        socket = accept(this->get_socket(), nullptr, nullptr);
+        socket = accept(get_socket(), nullptr, nullptr);
         std::string msg = read_file("index.html");
         while (send(socket, msg.c_str(), msg.size() + 1, 0) != msg.size() + 1);
         FD_SET(socket, &this->_master);
@@ -47,8 +47,8 @@ int CWS::HttpServer::run()
     }
   }
 
-  FD_CLR(this->get_socket(), &this->_master);
-  closesocket(this->get_socket());
+  FD_CLR(get_socket(), &this->_master);
+  closesocket(get_socket());
 
   while (this->_master.fd_count > 0)
   {
@@ -58,6 +58,7 @@ int CWS::HttpServer::run()
   }
 
   WSACleanup();
+
   return 0;
 }
 
