@@ -143,6 +143,7 @@
     <ClCompile Include="ListeningSocket.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SimpleSocket.cpp" />
+    <ClCompile Include="HttpServer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BindingSocket.hpp" />
@@ -151,6 +152,11 @@
     <ClInclude Include="cwslibc_sockets.hpp" />
     <ClInclude Include="ListeningSocket.hpp" />
     <ClInclude Include="SimpleSocket.hpp" />
+    <ClInclude Include="HttpServer.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="game.js" />
+    <None Include="index.html" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

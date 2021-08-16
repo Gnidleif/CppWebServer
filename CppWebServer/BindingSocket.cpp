@@ -1,13 +1,13 @@
 #pragma once
 #include "BindingSocket.hpp"
 
-CWS::BindingSocket::BindingSocket(const char* ip_address, int port, int domain, int service, int protocol)
-  : SimpleSocket(ip_address, port, domain, service, protocol)
+CWS::BindingSocket::BindingSocket(const char* ip_address, const char* port, int family, int socktype, int protocol, int flags)
+  : SimpleSocket(ip_address, port, family, socktype, protocol, flags)
 {
   test_socket(connect_to_network(this->get_socket(), this->get_address()));
 }
 
-int CWS::BindingSocket::connect_to_network(int socket, struct sockaddr_in address)
+int CWS::BindingSocket::connect_to_network(int socket, addrinfo* address)
 {
-  return bind(socket, (struct sockaddr*)&address, sizeof(address));
+  return bind(socket, address->ai_addr, (int)address->ai_addrlen);
 }

@@ -1,41 +1,35 @@
 #pragma once
 #include "SimpleSocket.hpp"
 
-CWS::SimpleSocket::SimpleSocket(const char* ip_address, int port, int domain, int service, int protocol)
+CWS::SimpleSocket::SimpleSocket(const char* ip_address, const char* port, int family, int socktype, int protocol, int flags)
 {
-  if ((this->_socket = socket(domain, service, protocol)) == INVALID_SOCKET)
+  // If socket initialization fails it probably means that WinSock isn't initialized yet
+  if ((this->_socket = socket(family, socktype, protocol)) == INVALID_SOCKET)
   {
     WSAData wsData;
-    WORD ver = MAKEWORD(2, 2);
-    int wsOk;
-    if ((wsOk = WSAStartup(ver, &wsData)) != 0)
-    {
-      perror("Failed to initialize WinSock...");
-      exit(EXIT_FAILURE);
-    }
-
-    if ((this->_socket = socket(domain, service, protocol)) == INVALID_SOCKET)
-    {
-      perror("Failed to initialize socket... ");
-      exit(EXIT_FAILURE);
-    }
+    assert(WSAStartup(MAKEWORD(2, 2), &wsData) == 0);
+    assert((this->_socket = socket(family, socktype, protocol)) != INVALID_SOCKET);
   }
 
-  this->_address.sin_family = domain;
-  this->_address.sin_port = htons(port);
-  inet_pton(domain, ip_address, &this->_address.sin_addr);
+  addrinfo hints;
+  ZeroMemory(&hints, sizeof(hints));
+
+  hints.ai_family = family;
+  hints.ai_socktype = socktype;
+  hints.ai_protocol = protocol;
+  hints.ai_flags = flags;
+
+  this->_address = nullptr;
+
+  assert(getaddrinfo(ip_address, port, &hints, &this->_address) == 0);
 }
 
 void CWS::SimpleSocket::test_socket(int socket)
 {
-  if (socket == SOCKET_ERROR) 
-  {
-    perror("Socket error... ");
-    exit(EXIT_FAILURE);
-  }
+  assert(socket != SOCKET_ERROR);
 }
 
-struct sockaddr_in CWS::SimpleSocket::get_address() 
+addrinfo* CWS::SimpleSocket::get_address()
 {
   return this->_address;
 }

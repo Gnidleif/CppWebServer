@@ -8,12 +8,9 @@ namespace CWS
   {
   public:
     // Constructor
-    ListeningSocket(const char* ip_address, int port, int domain, int service, int protocol, int backlog);
+    ListeningSocket(const char* ip_address, const char* port, int family, int socktype, int protocol, int flags, int backlog);
     // Start listening on the passed socket
     int start_listening(int socket, int backlog);
-    int run();
-
-  private:
-    fd_set _master;
+    virtual int run() = 0;
   };
 }

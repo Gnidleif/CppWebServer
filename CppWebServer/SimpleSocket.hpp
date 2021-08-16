@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+#include <WinSock2.h>
 #include <WS2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 
@@ -9,18 +11,18 @@ namespace CWS
   {
   public:
     // Constructor
-    SimpleSocket(const char* ip_address, int port, int domain, int service, int protocol);
+    SimpleSocket(const char* ip_address, const char* port, int family, int socktype, int protocol, int flags);
     // Check socket state and exit on fail
     void test_socket(int socket);
     // Virtual declaration of connect_to_network
-    virtual int connect_to_network(int socket, struct sockaddr_in address) = 0;
+    virtual int connect_to_network(int socket, addrinfo* address) = 0;
 
     // Getter functions
-    struct sockaddr_in get_address();
+    addrinfo* get_address();
     int get_socket();
 
   private:
-    struct sockaddr_in _address;
+    addrinfo* _address;
     int _socket;
   };
 }

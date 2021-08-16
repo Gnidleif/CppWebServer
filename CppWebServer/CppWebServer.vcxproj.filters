@@ -39,6 +39,9 @@
     <ClCompile Include="ListeningSocket.cpp">
       <Filter>Source Files\Networking\Sockets</Filter>
     </ClCompile>
+    <ClCompile Include="HttpServer.cpp">
+      <Filter>Source Files\Networking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SimpleSocket.hpp">
@@ -59,5 +62,16 @@
     <ClInclude Include="cwslibc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HttpServer.hpp">
+      <Filter>Header Files\Networking</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="index.html">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="game.js">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
