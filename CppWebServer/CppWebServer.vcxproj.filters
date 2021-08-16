@@ -13,30 +13,45 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Sockets">
+      <UniqueIdentifier>{a2c0038d-45c5-4e75-b1e4-c62bb7183f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Sockets">
+      <UniqueIdentifier>{f33dde9a-0ce4-4bea-9286-fedf023a6d2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BindingSocket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="ConnectingSocket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="ListeningSocket.cpp">
+      <Filter>Source Files\Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Sockets</Filter>
     </ClCompile>
     <ClCompile Include="SimpleSocket.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Sockets</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimpleSocket.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BindingSocket.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Sockets</Filter>
     </ClInclude>
     <ClInclude Include="ConnectingSocket.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="ListeningSocket.hpp">
+      <Filter>Header Files\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleSocket.hpp">
+      <Filter>Header Files\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="cwslibc-sockets.hpp">
+      <Filter>Header Files\Sockets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
