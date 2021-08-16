@@ -2,7 +2,7 @@
 #ifndef SimpleSocket_hpp
 #define SimpleSocket_hpp
 
-#include <stdio.h>
+#pragma comment(lib, "Ws2_32.lib")
 #include <WinSock2.h>
 
 namespace CWS

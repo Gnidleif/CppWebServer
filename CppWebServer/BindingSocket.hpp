@@ -2,13 +2,11 @@
 #ifndef BindingSocket_hpp
 #define BindingSocket_hpp
 
-#include <stdio.h>
-
 #include "SimpleSocket.hpp"
 
 namespace CWS
 {
-  class BindingSocket: public SimpleSocket
+  class BindingSocket : public SimpleSocket
   {
   public:
     // Constructor

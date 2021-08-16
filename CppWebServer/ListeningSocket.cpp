@@ -11,6 +11,15 @@ CWS::ListeningSocket::ListeningSocket(int domain, int service, int protocol, int
 
 void CWS::ListeningSocket::start_listening() 
 {
-  // not sure if supposed to be get_sock()
-  this->listening = listen(get_connection(), this->backlog);
+  this->listening = listen(get_sock(), this->backlog);
+}
+
+int CWS::ListeningSocket::get_listening()
+{
+  return this->listening;
+}
+
+int CWS::ListeningSocket::get_backlog()
+{
+  return this->backlog;
 }

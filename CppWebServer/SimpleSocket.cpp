@@ -11,7 +11,7 @@ CWS::SimpleSocket::SimpleSocket(int domain, int service, int protocol, int port,
 
   // Establish socket
   this->sock = socket(domain, service, protocol);
-  test_connection(sock);
+  test_connection(this->sock);
 };
 
 // Test connection virtual function

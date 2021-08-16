@@ -2,8 +2,6 @@
 #ifndef ConnectingSocket_hpp
 #define ConnectingSocket_hpp
 
-#include <stdio.h>
-
 #include "SimpleSocket.hpp"
 
 namespace CWS

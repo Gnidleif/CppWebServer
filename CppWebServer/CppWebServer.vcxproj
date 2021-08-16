@@ -148,7 +148,9 @@
   <ItemGroup>
     <ClInclude Include="BindingSocket.hpp" />
     <ClInclude Include="ConnectingSocket.hpp" />
+    <ClInclude Include="cwslibc-networking.hpp" />
     <ClInclude Include="cwslibc-sockets.hpp" />
+    <ClInclude Include="cwslibc.hpp" />
     <ClInclude Include="ListeningSocket.hpp" />
     <ClInclude Include="SimpleSocket.hpp" />
   </ItemGroup>
